@@ -1,13 +1,13 @@
-# Demo E-commerce
+# Demo Ecommerce
 
-Demo de aplicación e-commerce completa construida como monorepo.
+Demo de aplicación ecommerce completa construida como monorepo.
 
 ## Tecnologías
 
 Este proyecto utiliza las siguientes tecnologías:
 
 ### Backend
-- **MedusaJS 2.10.2** - Framework de e-commerce headless
+- **MedusaJS 2.10.2** - Framework de ecommerce headless
 - **PostgreSQL** - Base de datos
 - **Redis** - Cache y gestión de workflows
 - **TypeScript** - Lenguaje de programación
