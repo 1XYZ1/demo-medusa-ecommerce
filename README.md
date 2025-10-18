@@ -1,104 +1,110 @@
-<p align="center">
-  <a href="https://www.medusajs.com">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-      <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg" width=100>
-    </picture>
-  </a>
-  <a href="https://railway.app/template/gkU-27?referralCode=-Yg50p">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://railway.app/brand/logo-light.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://railway.app/brand/logo-dark.svg">
-      <img alt="Railway logo" src="https://railway.app/brand/logo-light.svg" width=100>
-    </picture>
-  </a>
-</p>
+# Demo E-commerce
 
-<h2 align="center">
-  Prebaked medusajs 2.0 monorepo
-</h2>
-<h4 align="center">
-  Backend + Storefront + postgres + redis + MinIO + MeiliSearch
-</h4>
+Demo de aplicación e-commerce completa construida como monorepo.
 
-<h2 align="center">
-  <a href="https://railway.app/template/gkU-27?referralCode=-Yg50p">one-click deploy on railway!</a>
-</h2>
+## Tecnologías
 
-<h1 align="center">
-  Need help?<br>
-  <a href="https://funkyton.com/medusajs-2-0-is-finally-here/">Step by step deploy guide, and video instructions</a>
-</h1>
+Este proyecto utiliza las siguientes tecnologías:
 
-<p align="center">
-Combine Medusa's modules for your commerce backend with the newest Next.js 14 features for a performant storefront.</p>
+### Backend
+- **MedusaJS 2.10.2** - Framework de e-commerce headless
+- **PostgreSQL** - Base de datos
+- **Redis** - Cache y gestión de workflows
+- **TypeScript** - Lenguaje de programación
+- **MinIO** - Almacenamiento de archivos en la nube
+- **MeiliSearch** - Motor de búsqueda de productos
+- **Stripe** - Procesamiento de pagos
+- **Resend** - Servicio de notificaciones por email
 
-## About this boilerplate
-This boilerplate is a monorepo consisting of the officially released MedusaJS 2.0 backend and storefront application. It is a pre-configured, ready-to-deploy solution, modified for seamless deployment on [railway.app](https://railway.app?referralCode=-Yg50p).
+### Frontend (Storefront)
+- **Next.js 14** - Framework de React con App Router
+- **React 18** - Biblioteca de UI
+- **TypeScript** - Lenguaje de programación
+- **Tailwind CSS** - Framework de estilos
+- **Medusa UI** - Componentes de interfaz
 
-Updated: to `version 2.10.2` 🥳
+## Características
 
-## Preconfigured 3rd party integrations
+- Catálogo completo de productos
+- Carrito de compras
+- Checkout con Stripe y PayPal
+- Cuentas de usuario
+- Búsqueda de productos con MeiliSearch
+- Panel de administración
+- Almacenamiento de archivos con MinIO
+- Notificaciones por email
 
-- MinIO file storage: Replaces local file storage with MinIO cloud storage, automatically creating a 'medusa-media' bucket for your media files. [README](backend/src/modules/minio-file/README.md)
-- Resend email integration [Watch setup video](https://youtu.be/pbdZm26YDpE?si=LQTHWeZMLD4w3Ahw) - special thanks to [aleciavogel](https://github.com/aleciavogel) for Resend notification service, and react-email implementation! [README](backend/src/modules/email-notifications/README.md)
-- Stripe payment service: [Watch setup video](https://youtu.be/dcSOpIzc1Og)
-- Meilisearch integration by [Rokmohar](https://github.com/rokmohar/medusa-plugin-meilisearch): Adds powerful product search capabilities to your store. When deployed on Railway using the template, MeiliSearch is automatically configured. (For non-railway'ers: [Watch setup video](https://youtu.be/hrXcc5MjApI))
+## Requisitos
 
-# Backend
+### Backend
+- Node.js 22.x
+- PostgreSQL (base de datos)
+- Redis (opcional, tiene fallback simulado)
+- MinIO (opcional, tiene fallback a almacenamiento local)
+- MeiliSearch (opcional)
 
-### local setup
-Video instructions: https://youtu.be/PPxenu7IjGM
+### Storefront
+- Node.js
+- Backend corriendo en puerto 9000
 
-- `cd backend/`
-- `pnpm install` or `npm i`
-- Rename `.env.template` ->  `.env`
-- To connect to your online database from your local machine, copy the `DATABASE_URL` value auto-generated on Railway and add it to your `.env` file.
-  - If connecting to a new database, for example a local one, run `pnpm ib` or `npm run ib` to seed the database.
-- `pnpm dev` or `npm run dev`
+## Instalación
 
-### requirements
-- **postgres database** (Automatic setup when using the Railway template)
-- **redis** (Automatic setup when using the Railway template) - fallback to simulated redis.
-- **MinIO storage** (Automatic setup when using the Railway template) - fallback to local storage.
-- **Meilisearch** (Automatic setup when using the Railway template)
+### 1. Configurar el Backend
 
-### commands
+```bash
+cd backend/
+pnpm install
+# o
+npm install
+```
 
-`cd backend/`
-`npm run ib` or `pnpm ib` will initialize the backend by running migrations and seed the database with required system data.
-`npm run dev` or `pnpm dev` will start the backend (and admin dashboard frontend on `localhost:9000/app`) in development mode.
-`pnpm build && pnpm start` will compile the project and run from compiled source. This can be useful for reproducing issues on your cloud instance.
+Renombrar `.env.template` a `.env` y configurar las variables de entorno necesarias.
 
-# Storefront
+Inicializar la base de datos:
+```bash
+pnpm ib
+# o
+npm run ib
+```
 
-### local setup
-Video instructions: https://youtu.be/PPxenu7IjGM
+Iniciar el backend en modo desarrollo:
+```bash
+pnpm dev
+# o
+npm run dev
+```
 
-- `cd storefront/
-- Install dependencies `npm i` or `pnpm i`
-- Rename `.env.local.template` ->  `.env.local`
+El backend estará disponible en `http://localhost:9000` y el panel de administración en `http://localhost:9000/app`
 
-### requirements
-- A running backend on port 9000 is required to fetch product data and other information needed to build Next.js pages.
+### 2. Configurar el Storefront
 
-### commands
-`cd storefront/`
-`npm run dev` or `pnpm dev` will run the storefront on uncompiled code, with hot-reloading as files are saved with changes.
+```bash
+cd storefront/
+pnpm install
+# o
+npm install
+```
 
-## Useful resources
-- How to setup credit card payment with Stripe payment module: https://youtu.be/dcSOpIzc1Og
-- https://funkyton.com/medusajs-2-0-is-finally-here/#succuessfully-deployed-whats-next
-  
-<p align="center">
-  <a href="https://funkyton.com/">
-    <div style="text-align: center;">
-      A template by,
-      <br>
-      <picture>
-        <img alt="FUNKYTON logo" src="https://res-5.cloudinary.com/hczpmiapo/image/upload/q_auto/v1/ghost-blog-images/funkyton-logo.png" width=200>
-      </picture>
-    </div>
-  </a>
-</p>
+Renombrar `.env.local.template` a `.env.local` y configurar las variables de entorno.
+
+Iniciar el storefront en modo desarrollo:
+```bash
+pnpm dev
+# o
+npm run dev
+```
+
+El storefront estará disponible en `http://localhost:8000`
+
+## Comandos Disponibles
+
+### Backend
+- `npm run ib` o `pnpm ib` - Inicializar la base de datos con migraciones y datos de prueba
+- `npm run dev` o `pnpm dev` - Iniciar en modo desarrollo
+- `npm run build` o `pnpm build` - Compilar el proyecto
+- `npm run start` o `pnpm start` - Iniciar en modo producción
+
+### Storefront
+- `npm run dev` o `pnpm dev` - Iniciar en modo desarrollo
+- `npm run build` o `pnpm build` - Compilar el proyecto
+- `npm run start` o `pnpm start` - Iniciar en modo producción
