@@ -16,21 +16,37 @@ export default async function Home({
 }: {
   params: { countryCode: string }
 }) {
-  const collections = await getCollectionsWithProducts(countryCode)
-  const region = await getRegion(countryCode)
-
-  if (!collections || !region) {
-    return null
-  }
-
-  return (
-    <>
-      <Hero />
-      <div className="py-12">
-        <ul className="flex flex-col gap-x-6">
-          <FeaturedProducts collections={collections} region={region} />
-        </ul>
-      </div>
-    </>
+  console.log("Country Code:", countryCode)
+  console.log("Backend URL:", process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL)
+  console.log(
+    "Publishable Key exists:",
+    !!process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
   )
+
+  try {
+    const collections = await getCollectionsWithProducts(countryCode)
+    const region = await getRegion(countryCode)
+
+    console.log("Collections:", collections)
+    console.log("Region:", region)
+
+    if (!collections || !region) {
+      console.log("Collections or region is null/undefined")
+      return null
+    }
+
+    return (
+      <>
+        <Hero />
+        <div className="py-12">
+          <ul className="flex flex-col gap-x-6">
+            <FeaturedProducts collections={collections} region={region} />
+          </ul>
+        </div>
+      </>
+    )
+  } catch (error) {
+    console.error("Error fetching data:", error)
+    return <div>Error loading data</div>
+  }
 }

@@ -1,5 +1,3 @@
-const path = require("path")
-
 module.exports = {
   darkMode: "class",
   presets: [require("@medusajs/ui-preset")],
@@ -21,6 +19,43 @@ module.exports = {
         padding: "padding-top padding-right padding-bottom padding-left",
       },
       colors: {
+        // Paleta personalizada para lentes de sol
+        primary: {
+          50: "#fef7ed",
+          100: "#fdedd3",
+          200: "#fbd7a5",
+          300: "#f8bb6d",
+          400: "#f59e0b", // Dorado principal
+          500: "#d97706", // Dorado oscuro
+          600: "#b45309",
+          700: "#92400e",
+          800: "#78350f",
+          900: "#451a03",
+        },
+        dark: {
+          50: "#f6f6f6",
+          100: "#e7e7e7",
+          200: "#d1d1d1",
+          300: "#b0b0b0",
+          400: "#888888",
+          500: "#6d6d6d",
+          600: "#5d5d5d",
+          700: "#4f4f4f",
+          800: "#454545",
+          900: "#1a1a1a", // Negro principal
+        },
+        accent: {
+          50: "#f0f9ff",
+          100: "#e0f2fe",
+          200: "#bae6fd",
+          300: "#7dd3fc",
+          400: "#38bdf8",
+          500: "#0ea5e9",
+          600: "#0284c7",
+          700: "#0369a1",
+          800: "#075985",
+          900: "#0c4a6e",
+        },
         grey: {
           0: "#FFFFFF",
           5: "#F9FAFB",
@@ -68,6 +103,22 @@ module.exports = {
           "Helvetica Neue",
           "Ubuntu",
           "sans-serif",
+        ],
+        serif: [
+          "Playfair Display",
+          "Georgia",
+          "Cambria",
+          "Times New Roman",
+          "Times",
+          "serif",
+        ],
+        display: [
+          "Playfair Display",
+          "Georgia",
+          "Cambria",
+          "Times New Roman",
+          "Times",
+          "serif",
         ],
       },
       keyframes: {
