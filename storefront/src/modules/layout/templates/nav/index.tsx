@@ -12,14 +12,14 @@ export default async function Nav() {
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
       <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
-        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
-          <div className="flex-1 basis-0 h-full flex items-center">
-            <div className="h-full">
-              <SideMenu regions={regions} />
-            </div>
+        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center w-full h-full text-small-regular max-w-[1440px] mx-auto px-4 small:px-8">
+          {/* Mobile hamburger menu */}
+          <div className="h-full flex items-center small:hidden">
+            <SideMenu regions={regions} />
           </div>
 
-          <div className="flex items-center h-full">
+          {/* Logo - different behavior for mobile vs desktop */}
+          <div className="flex items-center h-full flex-1 justify-center small:flex-none small:justify-start">
             <LocalizedClientLink
               href="/"
               className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
@@ -29,24 +29,41 @@ export default async function Nav() {
             </LocalizedClientLink>
           </div>
 
-          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-            <div className="hidden small:flex items-center gap-x-6 h-full">
-              {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
-                <LocalizedClientLink
-                  className="hover:text-ui-fg-base"
-                  href="/search"
-                  scroll={false}
-                  data-testid="nav-search-link"
-                >
-                  Search
-                </LocalizedClientLink>
-              )}
+          {/* Desktop navigation links - Centered */}
+          <div className="hidden small:flex items-center gap-x-16 h-full flex-1 justify-center">
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base transition-colors duration-200 text-base font-medium"
+              href="/"
+              data-testid="nav-home-link"
+            >
+              Home
+            </LocalizedClientLink>
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base transition-colors duration-200 text-base font-medium"
+              href="/store"
+              data-testid="nav-store-link"
+            >
+              Tienda
+            </LocalizedClientLink>
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base transition-colors duration-200 text-base font-medium"
+              href="/search"
+              scroll={false}
+              data-testid="nav-search-link"
+            >
+              Buscador
+            </LocalizedClientLink>
+          </div>
+
+          {/* Right side - Account and Cart */}
+          <div className="flex items-center gap-x-4 small:gap-x-12 h-full">
+            <div className="hidden small:flex items-center gap-x-12 h-full">
               <LocalizedClientLink
-                className="hover:text-ui-fg-base"
+                className="hover:text-ui-fg-base transition-colors duration-200 text-base font-medium"
                 href="/account"
                 data-testid="nav-account-link"
               >
-                Account
+                Cuenta
               </LocalizedClientLink>
             </div>
             <Suspense
@@ -56,7 +73,7 @@ export default async function Nav() {
                   href="/cart"
                   data-testid="nav-cart-link"
                 >
-                  Cart (0)
+                  Carrito (0)
                 </LocalizedClientLink>
               }
             >
